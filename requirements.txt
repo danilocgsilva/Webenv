@@ -1,0 +1,1 @@
+-e git+https://github.com/danilocgsilva/www_local_finder.git@master#egg=wwwlocalfinder
