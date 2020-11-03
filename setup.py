@@ -17,7 +17,7 @@ setup(
     author="Danilo Silva",
     author_email="contact@danilocgsilva.me",
     packages=["www_local_finder_cli"],
-    entry_points={"console_scripts": ["envweb=www_local_finder_cli.__main__:main"],},
+    entry_points={"console_scripts": ["webenv=www_local_finder_cli.__main__:main"],},
     include_package_data=True
 )
 
