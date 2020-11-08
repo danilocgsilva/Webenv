@@ -4,4 +4,4 @@ class PosixCommands:
         return "service apache2 status"
 
     def command_check_mysql(self):
-        "service mysql status"
+        return "service mysql status"
