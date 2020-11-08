@@ -2,11 +2,12 @@ import re
 
 class OutputInterpreterPosix:
 
-    def is_active(self, command_output: str):
+    def is_active(self, command_output):
 
-        if re.search(": active", command_output):
+        command_output_string = command_output.decode("utf-8")
+        command_results_splited = command_output_string.split("\n")
+        line_to_check = command_results_splited[3]
+
+        if re.search(": active", line_to_check):
             return True
-        elif re.search(": inactive", command_output):
-            return False
-        else:
-            raise Exception("Command content not known. Sorry!")
+        return False
