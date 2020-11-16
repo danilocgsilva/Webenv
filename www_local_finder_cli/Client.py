@@ -19,5 +19,6 @@ class Client:
             diagnose = Diagnose()
             diagnose.apache()
             diagnose.mysql()
+            diagnose.docker()
         else:
             raise Exception("I don't know this command: " + command)

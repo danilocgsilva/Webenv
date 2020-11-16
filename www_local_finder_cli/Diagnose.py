@@ -1,9 +1,9 @@
-import subprocess
-import re
-import os
 from www_local_finder_cli.OsCommands import OsCommands
 from www_local_finder_cli.OutputInterpreterPosix import OutputInterpreterPosix
 from www_local_finder_cli.OutputInterpreterWindows import OutputInterpreterWindows
+import subprocess
+import re
+import os
 
 class Diagnose:
 
@@ -21,6 +21,16 @@ class Diagnose:
 
     def mysql(self):
         self.__check_running("Mysql", self.oscommands.command_check_mysql().split(" "))
+
+    def docker(self):
+        command = ["systemctl", "is-active", "docker"]
+        FNULL = open(os.devnull, 'w')
+        result = subprocess.check_output(command)
+        result_string = result.decode("utf-8").replace("\n", "")
+        if result_string == "active":
+            print("Docker is running")
+        else:
+            print("Docker is not running")
 
     def __check_running(self, service, command_to_check):
         process = subprocess.Popen(command_to_check, stdout=subprocess.PIPE)
