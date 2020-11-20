@@ -25,11 +25,14 @@ class Diagnose:
     def docker(self):
         command = ["systemctl", "is-active", "docker"]
         FNULL = open(os.devnull, 'w')
-        result = subprocess.check_output(command)
-        result_string = result.decode("utf-8").replace("\n", "")
-        if result_string == "active":
-            print("Docker is running")
-        else:
+        try:
+            result = subprocess.check_output(command)
+            result_string = result.decode("utf-8").replace("\n", "")
+            if result_string == "active":
+                print("Docker is running")
+            else:
+                print("Docker is not running")
+        except subprocess.CalledProcessError as e:
             print("Docker is not running")
 
     def __check_running(self, service, command_to_check):
